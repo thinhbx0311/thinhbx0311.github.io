@@ -4,14 +4,14 @@ var valueSlider = 00;
 $(document).ready(function () {
     var speakerON = true;
 
-    // // Internet Explorer 6-11
-    // var isIE = /*@cc_on!@*/false || !!document.documentMode;
-    // // Edge 20+
-    // var isEdge = !isIE && !!window.StyleMedia;
-    // if (isIE || isEdge) {
-    //     alert("The browser which you're using is not fully-supported. Switch to another browser to continue.");
-    //     $('body').css('display', 'none');
-    // }
+    // Internet Explorer 6-11
+    var isIE = /*@cc_on!@*/false || !!document.documentMode;
+    // Edge 20+
+    var isEdge = !isIE && !!window.StyleMedia;
+    if (isIE || isEdge) {
+        alert("The browser which you're using is not fully-supported. Switch to another browser to continue.");
+        $('body').css('display', 'none');
+    }
     $("#select-a-car").on("click tap", function () {
         $(".select-list-car").toggleClass('list-car-active');
     });
