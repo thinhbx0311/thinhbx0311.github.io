@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>360 - Car Visualizer</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="main.css">
+    <link type="text/css" rel="stylesheet" href="css/myStyle.css">
+
+</head>
+
+<body>
+    <!-- Loading Screen -->
+    <section id="loading-screen">
+        <div id="loader">
+        </div>
+    </section>
+    <main>
+        <div id="container">
+            <div id="button-show-up" class="nav-right visible-xs">
+            </div>
+            <div id="corner-button-top">
+                <button class="button-all button-corner button-bottom" id="full-screen"><i
+                        class='fa fa-arrows-alt'></i></button>
+                <button class="button-all button-corner button-bottom" id="auto-camera"><i
+                        class='fa fa-video-camera'></i></button>
+                <button class="button-all button-corner button-bottom" id="speaker-button"><i class='fas fa-volume-up'
+                        style='padding-bottom: 1.5px;'>&nbsp</i></button>
+                <button class="button-all button-corner button-bottom" id="home-button" onClick="redirect()"><i
+                        class='fa fa-home'></i></button>
+            </div>
+            <div class="button_main">
+                <div id="corner-button-bottom">
+                    <button class="button-all button-corner button-bottom function-button button-bottom-hide"
+                        id="close-button"><i class="fas fa-times"></i></button>
+                    <button class="button-all button-corner button-bottom" id="select-a-car">SELECT COLOR</button>
+                    <button class="button-all button-corner button-bottom function-button" id="slider-button">
+                        <i class="fa fa-life-ring fa-5" aria-hidden="true"></i></button>
+
+                    <button class="button-all button-corner button-bottom function-button" id="run-car"><i
+                            class="fas fa-life-ring" aria-hidden="true"></i>
+                    </button>
+                    <button class="button-all button-corner button-bottom function-button" id="front-light"><i
+                            class="fas fa-car" aria-hidden="true"></i>
+                    </button>
+                    <button class="button-all button-corner button-bottom function-button" id="rear-light"><i
+                            class="fas fa-car-alt" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div class="select-list-car">
+                    <button class="button-all button-corner button-top button-select" style="color:blue"
+                        id="select-blue">BLUE</button>
+                    <button class="button-all button-corner button-top button-select" style="color:green"
+                        id="select-green">GREEN</button>
+                    <button class="button-all button-corner button-top button-select" style="color:white"
+                        id="select-white">WHITE</button>
+                    <button class="button-all button-corner button-top button-select" style="color:black"
+                        id="select-black">BLACK</button>
+                    <button class="button-all button-corner button-top button-select" style="color:Orange"
+                        id="select-orange">Orange</button>
+                    <button class="button-all button-corner button-top button-select" style="color:rgb(180, 173, 160) "
+                        id="select-silver">Silver</button>
+                    <button class="button-all button-corner button-top button-select" style="color:rgb(255, 0, 0) "
+                        id="select-red">Red</button>
+                </div>
+                <div class="slider">
+                    <input class="slider-input" value=10 type="range" min="0" max="20" />
+                </div>
+            </div>
+            <!-- End Loading Screen -->
+            <script src='https://kit.fontawesome.com/1069dccbd9.js'></script>
+            <!-- nav-right -->
+        </div>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script type="text/javascript" src="controljs.js"></script>
+    <script type="text/javascript">
+        function redirect() {
+            var url = "http://www.co-well.vn";
+            window.location(url);
+        }
+    </script>
+
+    <script type="x-shader/x-vertex" id="vertexShader">
+
+    #include <common>
+
+    uniform float speed;
+    uniform float time;
+    uniform float timeOffset;
+    varying vec2 vUv;
+    varying float vAlpha;
+
+    void main() {
+
+        vec3 pos = position;
+
+        float l = ( time * speed * 0.01 ) + timeOffset;
+        float f = fract( l ); // linear time factor [0,1)
+        float a = f * f; // quadratic time factor [0,1)
+
+        // slightly animate the vertices of light shaft if necessary
+
+        // pos.x += cos( l * 20.0 ) * sin( l * 10.0 );
+
+        vAlpha = saturate( 0.7 + min( 1.0, a * 10.0 ) * ( sin( a * 40.0 ) * 0.25 ) );
+
+      vUv = uv;
+
+        gl_Position = projectionMatrix * modelViewMatrix * vec4( pos, 1.0 );
+
+    }
+
+    </script>
+    <script type="x-shader/x-fragment" id="fragmentShader">
+
+            uniform float attenuation;
+            uniform vec3 color;
+            uniform sampler2D colorTexture;
+    
+            varying vec2 vUv;
+            varying float vAlpha;
+    
+            void main() {
+    
+                vec4 textureColor = texture2D( colorTexture, vUv );
+                gl_FragColor = vec4( textureColor.rgb * color.rgb, textureColor.a * vAlpha );
+                gl_FragColor.a *= pow( gl_FragCoord.z, attenuation );
+    
+            }
+    
+            </script>
+    <script type="module" src="car.js">
+    </script>
+
+
+
+
+</body>
+
+</html>

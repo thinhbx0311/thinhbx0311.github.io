@@ -1,0 +1,465 @@
+@import url(https://fonts.googleapis.com/css?family=Arimo:400,400italic,700,700italic);
+body, html {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: "Arimo", sans-serif;
+}
+
+main {
+    z-index: 1;
+    position: relative;
+}
+
+.sidebar {
+    height: 0%;
+    width: 30%;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    right: 0;
+    background-color: #ef8354;
+    transition: height 1s;
+    z-index: -1;
+}
+
+.bar {
+    display: block;
+    height: 5px;
+    width: 50px;
+    background-color: #ef8354;
+    margin: 10px auto;
+}
+
+.button {
+    cursor: pointer;
+    display: inline-block;
+    width: auto;
+    margin: 0 auto;
+    transition: all 0.7s ease;
+    z-index: 5;
+}
+
+.nav-right {
+    position: fixed;
+    right: 40px;
+    top: 20px;
+}
+
+.nav-right.visible-xs {
+    z-index: 3;
+}
+
+.hidden-xs {
+    display: none;
+}
+
+.middle {
+    margin: 0 auto;
+}
+
+.bar {
+    transition: all 0.7s ease;
+}
+
+.nav-right.visible-xs .active .bar {
+    background-color: #fff;
+    transition: all 0.7s ease;
+}
+
+.button.active .top {
+    transform: translateY(15px) rotateZ(45deg);
+}
+
+.button.active .bottom {
+    transform: translateY(-15px) rotateZ(-45deg);
+}
+
+.button.active .middle {
+    width: 0;
+}
+
+.move-to-left {
+    transform: translateX(-400px);
+}
+
+nav {
+    padding-top: 30px;
+}
+
+.sidebar-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    position: relative;
+    margin-top: 150px;
+    text-align: center;
+}
+
+.sidebar-item {
+    margin: 30px 0;
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+.sidebar-item:first-child {
+    transition: all 0.7s 0.2s ease-in-out;
+}
+
+.sidebar-item:nth-child(2) {
+    transition: all 0.7s 0.4s ease-in-out;
+}
+
+.sidebar-item:nth-child(3) {
+    transition: all 0.7s 0.6s ease-in-out;
+}
+
+.sidebar-item:last-child {
+    transition: all 0.7s 0.8s ease-in-out;
+}
+
+.sidebar-item.active {
+    opacity: 1;
+    transform: translateY(0px);
+}
+
+.sidebar-anchor {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.8em;
+    text-transform: uppercase;
+    position: relative;
+    padding-bottom: 7px;
+}
+
+.sidebar-anchor:before {
+    content: "";
+    width: 0;
+    height: 2px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+    transition: all 0.5s ease-in-out;
+}
+
+.sidebar-anchor:hover:before {
+    width: 100%;
+}
+
+.sidebar-active {
+    height: 100%;
+    z-index: 2;
+    overflow: auto;
+}
+
+#corner-button-top {
+    z-index: 5;
+    float: left;
+    position: fixed;
+    left: 40px;
+    top: 30px;
+}
+
+.button_main {
+    z-index: 5;
+    float: left;
+    position: fixed;
+    bottom: 30px;
+    margin: 0 auto;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+#corner-button-bottom {
+    position: relative;
+    /* margin: 0 auto; */
+}
+
+.select-list-car {
+    z-index: -1;
+    display: none;
+    position: absolute;
+    bottom: 38px;
+    margin: 0 auto;
+    transition: opacity 0.5s ease;
+    max-width: 100px;
+}
+
+.list-car-active {
+    z-index: 4;
+    display: block;
+}
+
+#select-a-car {
+    min-width: 146px;
+}
+
+/* for button */
+
+.button-all {
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background: none;
+    cursor: pointer;
+    padding: 10px 15px;
+    margin-right: 5px;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 300;
+    outline: none;
+    position: relative;
+    transition: all 0.3s;
+}
+
+.button-all:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    transition: all 0.3s;
+}
+
+/* Button */
+
+.button-corner {
+    border: 2px solid rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
+}
+
+.button-top:after {
+    width: 100%;
+    height: 0%;
+    top: 0;
+    left: 0;
+    background: #ef8354;
+}
+
+.button-top:hover, .button-top:active {
+    color: #2d3142;
+}
+
+.button-top:hover:after, .button-top:active:after {
+    height: 100%;
+}
+
+/* buttton-bottom */
+
+.button-bottom:after {
+    width: 100%;
+    height: 0%;
+    bottom: 0;
+    left: 0;
+    background: #ef8354;
+}
+
+.button-bottom:hover, .button-bottom:active {
+    color: #2d3142;
+}
+
+.button-bottom:hover:after, .button-bottom:active:after {
+    height: 100%;
+}
+
+.button-bottom-hide {
+    display: none;
+}
+
+/* selection for a car */
+
+.button-select {
+    width: inherit;
+    bottom: 5px;
+    margin-top: 3px;
+    z-index: inherit;
+}
+
+/* new new new */
+
+/* for slider */
+
+.slider {
+    width: 300px;
+    position: absolute;
+    bottom: 60px;
+    display: none;
+    margin: 0 auto;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.slider-active {
+    display: block;
+}
+
+/* track */
+
+.slider-input {
+    -webkit-appearance: none !important;
+    width: 100%;
+    height: 1px;
+    background-color: #ef8354;
+    border: none;
+    border-radius: 10px;
+    margin: auto;
+    transition: all 400ms;
+    outline: none;
+    padding: 0;
+    margin: 0;
+}
+
+.slider-input::-moz-range-track {
+    width: 100%;
+    height: 1px;
+    background-color: #ef8354;
+    border: none;
+    border-radius: 10px;
+    margin: auto;
+    transition: all 400ms;
+    outline: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* thumb */
+
+.slider-input::-webkit-slider-thumb {
+    -webkit-appearance: none !important;
+    transform: scale(0.75);
+    width: 20px;
+    height: 20px;
+    border: none;
+    background-color: #ef8354;
+    border-radius: 40px;
+    box-shadow: 0px 0px 0px green;
+    transition: all 400ms;
+    outline: none;
+}
+
+.slider-input::-moz-range-thumb {
+    -webkit-appearance: none !important;
+    transform: scale(0.75);
+    width: 20px;
+    height: 20px;
+    border: none;
+    background-color: #ef8354;
+    border-radius: 30px;
+    box-shadow: 0px 0px 0px green;
+    transition: all 400ms;
+    outline: none;
+}
+
+.slider-input::-webkit-slider-thumb:hover {
+    transform: scale(0.85);
+}
+
+.slider-input::-moz-range-thumb:hover {
+    transform: scale(0.85);
+}
+
+.slider-input::-webkit-slider-thumb:active {
+    transform: scale(1);
+}
+
+.slider-input::-moz-range-thumb:active {
+    transform: scale(1);
+}
+
+/* end new */
+
+/* loading Screen */
+
+/* html,
+        body {
+            overflow: hidden;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+        } */
+
+#loading-screen {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    opacity: 1;
+    transition: 1s opacity;
+}
+
+#loading-screen.fade-out {
+    opacity: 0;
+}
+
+#loader {
+    display: block;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: rgb(4, 59, 4);
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+#loader:before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: rgb(0, 255, 13);
+    -webkit-animation: spin 3s linear infinite;
+    animation: spin 3s linear infinite;
+}
+
+#loader:after {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: rgb(255, 0, 0);
+    -webkit-animation: spin 1.5s linear infinite;
+    animation: spin 1.5s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
