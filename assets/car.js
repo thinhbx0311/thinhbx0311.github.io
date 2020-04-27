@@ -16,6 +16,7 @@ import {
     TimerNode,
     PhongNodeMaterial
 } from './jsm/nodes/Nodes.js';
+
 var frame = new NodeFrame(), clock = new THREE.Clock();
 var turnLeft = false, turnRight = false, isFlash = false;
 var camera, scene, renderer, controls;
@@ -62,6 +63,8 @@ var changeDrBtn = document.getElementById('slider-button');
 init();
 animate();
 playBackgroundMusic();
+
+
 function init() {
     var container = document.getElementById('container');
     camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 2000);
@@ -86,9 +89,9 @@ function init() {
     initCar();
     initMaterials();
     initFucntion();
-    renderer = new THREE.WebGLRenderer({ antialias: true , powerPreference : 'low-performance' });
+    renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'low-power' });
     renderer.setPixelRatio(window.devicePixelRatio);
-    
+
     renderer.setSize(window.innerWidth, window.innerHeight);
     container.appendChild(renderer.domElement);
     renderer.outputEncoding = THREE.sRGBEncoding;
