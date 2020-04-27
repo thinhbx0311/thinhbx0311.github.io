@@ -82,9 +82,9 @@ function init() {
             scene.background = envMap;
             scene.environment = envMap;
         });
-    // initGarage();
-    // initCar();
-    // initMaterials();
+    initGarage();
+    initCar();
+    initMaterials();
     initFucntion();
     renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setPixelRatio(window.devicePixelRatio);
@@ -168,7 +168,7 @@ function initCar() {
     //End Load Screen Controller 
     var loader = new GLTFLoader(manager);
     loader.setDRACOLoader(dracoLoader);
-    loader.load('models/gltf/car.glb', function (gltf) {
+    loader.load('models/gltf/car_model.glb', function (gltf) {
         carModel = gltf.scene.children[0];
         carModel.scale.set(0.2, 0.2, 0.2);
         carModel.position.set(10, 0, 0);
