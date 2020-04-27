@@ -4,6 +4,7 @@ import { DRACOLoader } from './jsm/loaders/DRACOLoader.js';
 import { OrbitControls } from './jsm/controls/OrbitControls.js';
 import { RGBELoader } from './jsm/loaders/RGBELoader.js';
 import { TWEEN } from './jsm/libs/tween.module.min.js';
+import Stats from './jsm/libs/stats.module.js';
 import {
     NodeFrame,
     FloatNode,
@@ -93,9 +94,13 @@ function init() {
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     var pmremGenerator = new THREE.PMREMGenerator(renderer);
     pmremGenerator.compileEquirectangularShader();
-   
+    //check FPS
+    stats = new Stats();
+    container.appendChild(stats.dom);
+
+
     window.addEventListener('resize', onWindowResize, false);
-    renderer.setAnimationLoop(render); 
+    renderer.setAnimationLoop(render);
     initCamera();
     targetPosition = new THREE.Vector3(150, 100, 0);
     tweenMove(targetPosition, 5000);
@@ -321,7 +326,7 @@ function render() {
     }
     autoRotateCam();
     renderer.render(scene, camera);
-   
+
 }
 function frontLight() {
     autoRot = false;
@@ -409,13 +414,15 @@ function autoRotateCam() {
         // camera.position.set(150, 100, 0);
     }
     renderer.render(scene, camera);
-   
+
 }
 function animate() {
     TWEEN.update();
 
     controls.update();
     requestAnimationFrame(animate);
+
+    stats.update();
     render();
     if (turnLeft) {
         var delta = clock.getDelta();
