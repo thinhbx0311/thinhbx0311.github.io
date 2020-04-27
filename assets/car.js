@@ -83,12 +83,12 @@ function init() {
             scene.environment = envMap;
         });
     initGarage();
-    //initCar();
-   // initMaterials();
+    initCar();
+    initMaterials();
     initFucntion();
     renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(window.innerWidth / 2, window.innerHeight / 2);
     container.appendChild(renderer.domElement);
     renderer.outputEncoding = THREE.sRGBEncoding;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
