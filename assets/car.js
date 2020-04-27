@@ -74,14 +74,14 @@ function init() {
     scene.add(dirLight);
     // scene.add(new THREE.AxesHelper(500)); 
     //  scene.fog = new THREE.Fog( 0xd7cbb1, 1, 80 ); 
-    new RGBELoader().setDataType(THREE.UnsignedByteType)
-        .setPath('textures/equirectangular/').load('quarry_01_1k.hdr', function (texture) {
-            var envMap = pmremGenerator.fromEquirectangular(texture).texture;
-            pmremGenerator.dispose();
-            envMap.envMapIntensity = 1;
-            scene.background = envMap;
-            scene.environment = envMap;
-        });
+    // new RGBELoader().setDataType(THREE.UnsignedByteType)
+    //     .setPath('textures/equirectangular/').load('quarry_01_1k.hdr', function (texture) {
+    //         var envMap = pmremGenerator.fromEquirectangular(texture).texture;
+    //         pmremGenerator.dispose();
+    //         envMap.envMapIntensity = 1;
+    //         scene.background = envMap;
+    //         scene.environment = envMap;
+    //     });
     initGarage();
     initCar();
     initMaterials();
