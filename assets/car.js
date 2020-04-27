@@ -82,9 +82,9 @@ function init() {
             scene.background = envMap;
             scene.environment = envMap;
         });
-    initGarage();
-    initCar();
-    initMaterials();
+    // initGarage();
+    // initCar();
+    // initMaterials();
     initFucntion();
     renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setPixelRatio(window.devicePixelRatio);
