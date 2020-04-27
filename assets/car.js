@@ -86,8 +86,9 @@ function init() {
     initCar();
     initMaterials();
     initFucntion();
-    renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setPixelRatio(window.devicePixelRatio / 3);
+    renderer = new THREE.WebGLRenderer({ antialias: true , powerPreference : 'low-performance' });
+    renderer.setPixelRatio(window.devicePixelRatio);
+    
     renderer.setSize(window.innerWidth, window.innerHeight);
     container.appendChild(renderer.domElement);
     renderer.outputEncoding = THREE.sRGBEncoding;
