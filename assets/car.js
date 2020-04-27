@@ -68,10 +68,10 @@ function init() {
     camera.position.set(-5, 55, 170);
     // camera.position.set(150, 100, 0); 
     scene = new THREE.Scene();
-    dirLight = new THREE.DirectionalLight(0xffffff, 3);
-    dirLight.position.set(10, 10, 10);
-    dirLight.position.multiplyScalar(100);
-    scene.add(dirLight);
+    // dirLight = new THREE.DirectionalLight(0xffffff, 3);
+    // dirLight.position.set(10, 10, 10);
+    // dirLight.position.multiplyScalar(100);
+    // scene.add(dirLight);
     // scene.add(new THREE.AxesHelper(500)); 
     //  scene.fog = new THREE.Fog( 0xd7cbb1, 1, 80 ); 
     // new RGBELoader().setDataType(THREE.UnsignedByteType)
