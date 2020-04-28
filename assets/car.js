@@ -5,6 +5,7 @@ import { OrbitControls } from './jsm/controls/OrbitControls.js';
 import { RGBELoader } from './jsm/loaders/RGBELoader.js';
 import { TWEEN } from './jsm/libs/tween.module.min.js';
 import Stats from './jsm/libs/stats.module.js';
+import { FBXLoader } from './jsm/loaders/FBXLoader.js';
 import {
     NodeFrame,
     FloatNode,
@@ -89,7 +90,7 @@ function init() {
     initCar();
     initMaterials();
     initFucntion();
-    renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'low-power' });
+    renderer = new THREE.WebGLRenderer();
    // renderer.setPixelRatio(window.devicePixelRatio);
 
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -154,8 +155,8 @@ function initGarage() {
     });
 }
 function initCar() {
-    var dracoLoader = new DRACOLoader();
-    dracoLoader.setDecoderPath('js/libs/draco/gltf/');
+    // var dracoLoader = new DRACOLoader();
+    // dracoLoader.setDecoderPath('js/libs/draco/gltf/');
     //Load Screen Controller 
     var manager = new THREE.LoadingManager();
     manager.onProgress = function (item, loaded, total) {
@@ -170,10 +171,10 @@ function initCar() {
         //console.log('there has been an error');
     };
     //End Load Screen Controller 
-    var loader = new GLTFLoader(manager);
-    loader.setDRACOLoader(dracoLoader);
-    loader.load('models/gltf/car.glb', function (gltf) {
-        carModel = gltf.scene.children[0];
+    var loader = new FBXLoader(manager);
+    //loader.setDRACOLoader(dracoLoader);
+    loader.load('models/gltf/carfbx.fbx', function (gltf) {
+        carModel = gltf;
         carModel.scale.set(0.2, 0.2, 0.2);
         carModel.position.set(10, 0, 0);
         carModel.castShadow = true;
