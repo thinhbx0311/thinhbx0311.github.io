@@ -72,6 +72,7 @@ function init() {
     camera.position.set(-5, 55, 170);
     // camera.position.set(150, 100, 0); 
     scene = new THREE.Scene();
+    scene.matrixAutoUpdate = false;
     dirLight = new THREE.DirectionalLight(0xffffff, 3);
     dirLight.position.set(10, 10, 10);
     dirLight.position.multiplyScalar(100);
@@ -91,7 +92,7 @@ function init() {
     initMaterials();
     initFucntion();
     renderer = new THREE.WebGLRenderer();
-   // renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setPixelRatio(window.devicePixelRatio);
 
     renderer.setSize(window.innerWidth, window.innerHeight);
     container.appendChild(renderer.domElement);
@@ -102,6 +103,7 @@ function init() {
     //check FPS
     stats = new Stats();
     container.appendChild(stats.dom);
+   
 
 
     window.addEventListener('resize', onWindowResize, false);
@@ -155,8 +157,8 @@ function initGarage() {
     });
 }
 function initCar() {
-    // var dracoLoader = new DRACOLoader();
-    // dracoLoader.setDecoderPath('js/libs/draco/gltf/');
+    var dracoLoader = new DRACOLoader();
+    dracoLoader.setDecoderPath('js/libs/draco/gltf/');
     //Load Screen Controller 
     var manager = new THREE.LoadingManager();
     manager.onProgress = function (item, loaded, total) {
@@ -171,10 +173,10 @@ function initCar() {
         //console.log('there has been an error');
     };
     //End Load Screen Controller 
-    var loader = new FBXLoader(manager);
-    //loader.setDRACOLoader(dracoLoader);
-    loader.load('models/gltf/carfbx.fbx', function (gltf) {
-        carModel = gltf;
+    var loader = new GLTFLoader(manager);
+    loader.setDRACOLoader(dracoLoader);
+    loader.load('models/gltf/car.glb', function (gltf) {
+        carModel = gltf.scene.children[0];
         carModel.scale.set(0.2, 0.2, 0.2);
         carModel.position.set(10, 0, 0);
         carModel.castShadow = true;
@@ -330,12 +332,13 @@ function render() {
             wheels[i].rotation.x = time * Math.PI;
         }
     }
+    
     autoRotateCam();
     TWEEN.update();
     controls.update();
     stats.update();
     
-    renderer.render(scene, camera);
+    //renderer.render(scene, camera);
     if (turnLeft) {
         var delta = clock.getDelta();
         frame.update(delta);
