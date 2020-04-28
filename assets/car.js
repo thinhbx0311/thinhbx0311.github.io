@@ -90,7 +90,7 @@ function init() {
     initMaterials();
     initFucntion();
     renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'low-power' });
-    renderer.setPixelRatio(window.devicePixelRatio);
+   // renderer.setPixelRatio(window.devicePixelRatio);
 
     renderer.setSize(window.innerWidth, window.innerHeight);
     container.appendChild(renderer.domElement);
@@ -322,7 +322,7 @@ function onWindowResize() {
     renderer.setSize(window.innerWidth, window.innerHeight);
 }
 function render() {
-
+    
     if (isRun) {
         var time = performance.now() / 500;
         for (var i = 0; i < wheels.length; i++) {
@@ -333,6 +333,7 @@ function render() {
     TWEEN.update();
     controls.update();
     stats.update();
+    
     renderer.render(scene, camera);
     if (turnLeft) {
         var delta = clock.getDelta();
